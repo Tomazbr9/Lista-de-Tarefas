@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block main_content %}
+    <form
+        method="post"
+        action=""
+    >
+        {% csrf_token %}
+        <div class="title-task title-update">
+            {{form.title}}   
+        </div>
+        <div class="description-task">
+            <h2>Descrição:</h2>
+            {{form.description}}
+        </div>
+        <div class="date-time-task">
+            {{form.date}} | {{form.time}}
+        </div>
+        <button class="btn-update" type="submit">Atualizar</button>
+    </form>
+{% endblock main_content %}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>    
+{% include "partials/_head.html" %}
+</head>
+<body>
+    {% include "partials/_header.html" %}
+    <div class="space"></div>
+    <main class="main-content">
+    {% block main_content %}
+    {% endblock main_content %}
+    </main>
+</body>
+</html>

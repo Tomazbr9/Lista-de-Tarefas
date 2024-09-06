@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <div class="block-content">
+        <div class="title-task">
+            <h1 id="title">{{task.title}}<h1>
+        </div>
+        <div class="description-task">
+            <h2>Descrição:</h2>
+            <p>{{task.description}}</p>
+        </div>
+        <div class="date-time-task">
+            {{task.date}} | {{task.time}}h
+        </div>
+        <div class="btn-task">
+            <form
+                class="form-delete-update"
+                action = "{% url "home:delete" task.id %}"
+            >
+            <button type="submit" class="delete-task">DELETAR</button>
+            </form>
+            <a href="{% url "home:update" task.id %}" class="btn-update">EDITAR</a>
+        </div>
+    </div> 
+{% endblock main_content %}

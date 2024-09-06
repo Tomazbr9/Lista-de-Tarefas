@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block main_content %}
+    <div class="create-tasks">
+        <form
+            method = "post"
+            action = "{% url "home:index" %}"
+            >
+            {% csrf_token %}
+            {{form.title}}
+            {{form.description}}
+            {{form.date}}
+            {{form.time}}
+            <button class="btn" type="submit">criar</button>
+        </form>
+    </div>
+    <div class="errors">
+        {{form.date.errors}}
+        {{form.time.errors}}
+    </div>
+    <div class="block-content">
+        <table class="table-tasks">
+            <caption class="table-caption">Tarefas</caption>
+
+            <thead>
+                <tr class="table-row-head">
+                    <th class="table-header">Concluir</th>
+                    <th class="table-header">Titulo</th>
+                    <th class="table-header">Descrição</th>
+                    <th class="table-header">Data</th>
+                    <th class="table-header">Hora</th>
+                </tr>
+            </thead>
+
+            <tbody class="table-tbody">
+                {% for task in tasks %}
+                    <tr class="table-row">
+                        <td class="table-cel show">
+                            <form
+                                id="form-check"
+                                method="post"
+                                action="{% url "home:checkbox" task.id %}"
+                            > 
+                                {% csrf_token %}
+                                <input class="task-completed" type="checkbox" {% if task.show %}checked{% endif %} onChange="this.form.submit()"></input>
+                            </form>
+                        </td>
+                        <td class="table-cel {% if task.show %}task-completed{% endif %}"><a href="{% url "home:task" task.id %}">{{task.title}}</a></td>
+                        <td class="table-cel {% if task.show %}task-completed{% endif %}">{{task.description}}</td>
+                        <td class="table-cel {% if task.show %}task-completed{% endif %}">{{task.date}}</td>
+                        <td class="table-cel {% if task.show %}task-completed{% endif %}">{{task.time}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock main_content %}

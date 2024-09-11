@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<div class=" main-content container-login">
+    <form
+    class="form-login"
+    method="post"
+    action="{% url "home:login" %}"
+    >
+    {% csrf_token %}
+        <h2 class="title-login">Login</h2>
+        {% for field in form %}
+            <label for="{{field.id_for_label}}">{{field.label}}</label>
+            {{field}}
+            {{field.errors}}
+        {% endfor %}
+
+        {% if form.non_field_errors %}
+                {{form.non_field_errors}}
+            {% endif %}
+
+        <button type="submit" class='btn-login'>Login</button>
+        <a class="register-link" href="{% url "home:register" %}">Ainda não tem cadastro?</a>
+    </form>
+</div>
+{% endblock main_content %}

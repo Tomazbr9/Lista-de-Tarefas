@@ -10,7 +10,11 @@
             {{form.description}}
             {{form.date}}
             {{form.time}}
-            <button class="btn" type="submit">criar</button>
+            {% if user.is_authenticated %}
+                <button class="btn-login" type="submit">Criar</button>
+            {% else %}
+                <a href="{% url "home:login" %}" class="btn">criar</a>
+            {% endif %}
         </form>
     </div>
     <div class="errors">

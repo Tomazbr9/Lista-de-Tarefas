@@ -2,6 +2,12 @@
     <nav class="nav-bar main-content">
         <h1 class="title-site"><a href="{% url "home:index" %}">lista de tarefas</a></h1>
         <ul class="list-menu">
+
+            {% if user.is_authenticated %}
+                <li><a href="{% url "home:logout" %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url "home:login" %}">Login</a></li>
+            {% endif %}
             <li><a href="#">Contato</a></li>
             <li><a href="#">Sobre nós</a></li>
         </ul>
